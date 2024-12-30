@@ -76,7 +76,7 @@ struct StorageWidgetEntryView : View {
                 }
             }
             .padding()
-        case .systemLarge:
+        case .systemLarge, .systemExtraLarge:
             VStack(alignment: .leading) {
                 Text("Device Storage Information")
                     .font(.headline)
@@ -102,8 +102,6 @@ struct StorageWidgetEntryView : View {
                     .foregroundColor(.gray)
             }
             .padding()
-        case .systemExtraLarge:
-            Text("Extra large")
         @unknown default:
             Text("Unsupported size")
         }
