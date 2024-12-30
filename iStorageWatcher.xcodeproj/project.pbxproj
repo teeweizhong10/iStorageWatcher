@@ -9,7 +9,10 @@
 /* Begin PBXBuildFile section */
 		4A3580C52D210B88000E7615 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A3580C42D210B88000E7615 /* WidgetKit.framework */; };
 		4A3580C72D210B88000E7615 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A3580C62D210B88000E7615 /* SwiftUI.framework */; };
-		4A3580D52D210B8A000E7615 /* iStorageWidgetMacOSExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 4A3580C22D210B88000E7615 /* iStorageWidgetMacOSExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		4A3580D52D210B8A000E7615 /* iStorageWidgetMacOSExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 4A3580C22D210B88000E7615 /* iStorageWidgetMacOSExtension.appex */; platformFilters = (macos, ); settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		4A3580EC2D224AD8000E7615 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A3580C42D210B88000E7615 /* WidgetKit.framework */; };
+		4A3580ED2D224AD8000E7615 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A3580C62D210B88000E7615 /* SwiftUI.framework */; };
+		4A3580FE2D224AD9000E7615 /* iStorageWidgetiOSExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 4A3580EB2D224AD8000E7615 /* iStorageWidgetiOSExtension.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -19,6 +22,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 4A3580C12D210B88000E7615;
 			remoteInfo = iStorageWidgetMacOSExtension;
+		};
+		4A3580FC2D224AD9000E7615 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4AE800A72D2107AF00D23196 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4A3580EA2D224AD8000E7615;
+			remoteInfo = iStorageWidgetiOSExtension;
 		};
 		4AE800C32D2107B100D23196 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -39,10 +49,11 @@
 /* Begin PBXCopyFilesBuildPhase section */
 		4A3580DA2D210B8A000E7615 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				4A3580FE2D224AD9000E7615 /* iStorageWidgetiOSExtension.appex in Embed Foundation Extensions */,
 				4A3580D52D210B8A000E7615 /* iStorageWidgetMacOSExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
@@ -54,6 +65,7 @@
 		4A3580C22D210B88000E7615 /* iStorageWidgetMacOSExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = iStorageWidgetMacOSExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A3580C42D210B88000E7615 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		4A3580C62D210B88000E7615 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		4A3580EB2D224AD8000E7615 /* iStorageWidgetiOSExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = iStorageWidgetiOSExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AE800AF2D2107AF00D23196 /* iStorageWatcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iStorageWatcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AE800C22D2107B100D23196 /* iStorageWatcherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iStorageWatcherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AE800CC2D2107B100D23196 /* iStorageWatcherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iStorageWatcherUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,6 +87,21 @@
 			);
 			target = 4A3580C12D210B88000E7615 /* iStorageWidgetMacOSExtension */;
 		};
+		4A3580FF2D224AD9000E7615 /* Exceptions for "iStorageWidgetiOS" folder in "iStorageWidgetiOSExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 4A3580EA2D224AD8000E7615 /* iStorageWidgetiOSExtension */;
+		};
+		4A3581062D224B1F000E7615 /* Exceptions for "iStorageWatcher" folder in "iStorageWidgetiOSExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Storage/StorageInfo.swift,
+				WidgetViews/WidgetView.swift,
+			);
+			target = 4A3580EA2D224AD8000E7615 /* iStorageWidgetiOSExtension */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -86,10 +113,19 @@
 			path = iStorageWidgetMacOS;
 			sourceTree = "<group>";
 		};
+		4A3580EE2D224AD8000E7615 /* iStorageWidgetiOS */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				4A3580FF2D224AD9000E7615 /* Exceptions for "iStorageWidgetiOS" folder in "iStorageWidgetiOSExtension" target */,
+			);
+			path = iStorageWidgetiOS;
+			sourceTree = "<group>";
+		};
 		4AE800B12D2107AF00D23196 /* iStorageWatcher */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				4A3580DC2D210D68000E7615 /* Exceptions for "iStorageWatcher" folder in "iStorageWidgetMacOSExtension" target */,
+				4A3581062D224B1F000E7615 /* Exceptions for "iStorageWatcher" folder in "iStorageWidgetiOSExtension" target */,
 			);
 			path = iStorageWatcher;
 			sourceTree = "<group>";
@@ -113,6 +149,15 @@
 			files = (
 				4A3580C72D210B88000E7615 /* SwiftUI.framework in Frameworks */,
 				4A3580C52D210B88000E7615 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4A3580E82D224AD8000E7615 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4A3580ED2D224AD8000E7615 /* SwiftUI.framework in Frameworks */,
+				4A3580EC2D224AD8000E7615 /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,6 +201,7 @@
 				4AE800C52D2107B100D23196 /* iStorageWatcherTests */,
 				4AE800CF2D2107B100D23196 /* iStorageWatcherUITests */,
 				4A3580C82D210B88000E7615 /* iStorageWidgetMacOS */,
+				4A3580EE2D224AD8000E7615 /* iStorageWidgetiOS */,
 				4A3580C32D210B88000E7615 /* Frameworks */,
 				4AE800B02D2107AF00D23196 /* Products */,
 			);
@@ -168,6 +214,7 @@
 				4AE800C22D2107B100D23196 /* iStorageWatcherTests.xctest */,
 				4AE800CC2D2107B100D23196 /* iStorageWatcherUITests.xctest */,
 				4A3580C22D210B88000E7615 /* iStorageWidgetMacOSExtension.appex */,
+				4A3580EB2D224AD8000E7615 /* iStorageWidgetiOSExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -197,6 +244,28 @@
 			productReference = 4A3580C22D210B88000E7615 /* iStorageWidgetMacOSExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		4A3580EA2D224AD8000E7615 /* iStorageWidgetiOSExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4A3581002D224AD9000E7615 /* Build configuration list for PBXNativeTarget "iStorageWidgetiOSExtension" */;
+			buildPhases = (
+				4A3580E72D224AD8000E7615 /* Sources */,
+				4A3580E82D224AD8000E7615 /* Frameworks */,
+				4A3580E92D224AD8000E7615 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				4A3580EE2D224AD8000E7615 /* iStorageWidgetiOS */,
+			);
+			name = iStorageWidgetiOSExtension;
+			packageProductDependencies = (
+			);
+			productName = iStorageWidgetiOSExtension;
+			productReference = 4A3580EB2D224AD8000E7615 /* iStorageWidgetiOSExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		4AE800AE2D2107AF00D23196 /* iStorageWatcher */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4AE800D62D2107B100D23196 /* Build configuration list for PBXNativeTarget "iStorageWatcher" */;
@@ -210,6 +279,7 @@
 			);
 			dependencies = (
 				4A3580D42D210B8A000E7615 /* PBXTargetDependency */,
+				4A3580FD2D224AD9000E7615 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				4AE800B12D2107AF00D23196 /* iStorageWatcher */,
@@ -280,6 +350,9 @@
 					4A3580C12D210B88000E7615 = {
 						CreatedOnToolsVersion = 16.2;
 					};
+					4A3580EA2D224AD8000E7615 = {
+						CreatedOnToolsVersion = 16.2;
+					};
 					4AE800AE2D2107AF00D23196 = {
 						CreatedOnToolsVersion = 16.2;
 					};
@@ -311,12 +384,20 @@
 				4AE800C12D2107B100D23196 /* iStorageWatcherTests */,
 				4AE800CB2D2107B100D23196 /* iStorageWatcherUITests */,
 				4A3580C12D210B88000E7615 /* iStorageWidgetMacOSExtension */,
+				4A3580EA2D224AD8000E7615 /* iStorageWidgetiOSExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		4A3580C02D210B88000E7615 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4A3580E92D224AD8000E7615 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -354,6 +435,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4A3580E72D224AD8000E7615 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4AE800AB2D2107AF00D23196 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -380,8 +468,17 @@
 /* Begin PBXTargetDependency section */
 		4A3580D42D210B8A000E7615 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilters = (
+				macos,
+			);
 			target = 4A3580C12D210B88000E7615 /* iStorageWidgetMacOSExtension */;
 			targetProxy = 4A3580D32D210B8A000E7615 /* PBXContainerItemProxy */;
+		};
+		4A3580FD2D224AD9000E7615 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilter = ios;
+			target = 4A3580EA2D224AD8000E7615 /* iStorageWidgetiOSExtension */;
+			targetProxy = 4A3580FC2D224AD9000E7615 /* PBXContainerItemProxy */;
 		};
 		4AE800C42D2107B100D23196 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -453,6 +550,65 @@
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		4A3581012D224AD9000E7615 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WSM9CCA2PS;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = iStorageWidgetiOS/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = iStorageWidgetiOS;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wei.iStorageWatcher.iStorageWidgetiOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4A3581022D224AD9000E7615 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WSM9CCA2PS;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = iStorageWidgetiOS/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = iStorageWidgetiOS;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wei.iStorageWatcher.iStorageWidgetiOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
@@ -593,7 +749,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
@@ -632,7 +788,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
@@ -746,6 +902,15 @@
 			buildConfigurations = (
 				4A3580D82D210B8A000E7615 /* Debug */,
 				4A3580D92D210B8A000E7615 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4A3581002D224AD9000E7615 /* Build configuration list for PBXNativeTarget "iStorageWidgetiOSExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4A3581012D224AD9000E7615 /* Debug */,
+				4A3581022D224AD9000E7615 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
