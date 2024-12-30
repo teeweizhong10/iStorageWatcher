@@ -58,8 +58,9 @@
       allowLocationSimulation = "YES"
       launchAutomaticallySubstyle = "2">
       <RemoteRunnable
-         runnableDebuggingMode = "2"
-         BundleIdentifier = "com.apple.springboard">
+         runnableDebuggingMode = "1"
+         BundleIdentifier = "com.apple.widgetkit.simulator"
+         RemotePath = "/System/Library/CoreServices/WidgetKit Simulator.app/Contents/MacOS/WidgetKit Simulator">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4A3580C12D210B88000E7615"
@@ -80,7 +81,7 @@
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "_XCWidgetKind"
-            value = ""
+            value = "iStorageWidgetMacOS"
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable

@@ -9,8 +9,8 @@ import WidgetKit
 import SwiftUI
 
 @main
-struct StorageWidget: Widget {
-    let kind: String = "StorageWidget"
+struct iStorageWidgetMacOS: Widget {
+    let kind: String = "iStorageWidgetMacOS"
 
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: StorageWidgetProvider()) { entry in
@@ -24,7 +24,7 @@ struct StorageWidget: Widget {
 }
 
 // MARK: - Preview
-struct StorageWidget_Previews: PreviewProvider {
+struct iStorageWidgetMacOS_Previews: PreviewProvider {
     static var previews: some View {
         StorageWidgetEntryView(entry: SimpleEntry(
             date: Date(),
