@@ -25,6 +25,24 @@ struct StorageInfo {
     var usedSpaceInGB: Double {
         return Double(usedSpace) / 1_073_741_824
     }
+
+    var freeSpacePercentage: Double {
+        guard totalSpace > 0 else { return 0.0 }
+        return (Double(freeSpace) / Double(totalSpace) * 100).rounded(toPlaces: 1)
+    }
+
+    var usedSpacePercentage: Double {
+        guard totalSpace > 0 else { return 0.0 }
+        return (Double(usedSpace) / Double(totalSpace) * 100).rounded(toPlaces: 1)
+    }
+}
+
+extension Double {
+    /// Rounds the double to 'places' decimal places.
+    func rounded(toPlaces places: Int) -> Double {
+        let divisor = pow(10.0, Double(places))
+        return (self * divisor).rounded() / divisor
+    }
 }
 
 class StorageManager {

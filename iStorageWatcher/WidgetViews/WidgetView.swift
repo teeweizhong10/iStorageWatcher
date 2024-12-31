@@ -50,11 +50,15 @@ struct StorageWidgetEntryView : View {
         switch family {
         case .systemSmall:
             VStack {
-                Text("Free")
+                HStack {
+                    Text("Available Storage")
+                        .font(.headline)
+                    Spacer()
+                    Text("\(Image(systemName: "internaldrive.fill"))")
+                }
+                Divider()
                 Text(String(format: "%.1f GB", entry.storageInfo.freeSpaceInGB))
-                    .font(.headline)
             }
-            .padding()
         case .systemMedium:
             VStack(alignment: .leading) {
                 Text("Storage")
