@@ -527,7 +527,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 15.2;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.wei.iStorageWatcher.StorageWidgetMacOS;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wei.iStorageWatcher.app.StorageWidgetMacOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -558,7 +558,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 15.2;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.wei.iStorageWatcher.StorageWidgetMacOS;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wei.iStorageWatcher.app.StorageWidgetMacOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -587,7 +587,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.wei.iStorageWatcher.iStorageWidgetiOS;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wei.iStorageWatcher.app.iStorageWidgetiOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
@@ -618,7 +618,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.wei.iStorageWatcher.iStorageWidgetiOS;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wei.iStorageWatcher.app.iStorageWidgetiOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
@@ -754,7 +754,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"iStorageWatcher/Preview Content\"";
-				DEVELOPMENT_TEAM = WSM9CCA2PS;
+				DEVELOPMENT_TEAM = FG6VT6A3M9;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -777,7 +777,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.wei.iStorageWatcher;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wei.iStorageWatcher.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
@@ -799,7 +799,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"iStorageWatcher/Preview Content\"";
-				DEVELOPMENT_TEAM = WSM9CCA2PS;
+				DEVELOPMENT_TEAM = FG6VT6A3M9;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -822,7 +822,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.wei.iStorageWatcher;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wei.iStorageWatcher.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
