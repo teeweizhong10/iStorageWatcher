@@ -10,15 +10,15 @@ import SwiftUI
 
 @main
 struct iStorageWidgetMacOS: Widget {
-    let kind: String = "iStorageWidgetMacOS"
+    let kind: String = StorageWatcherStrings.iStorageWidgetMacOSType.rawValue
 
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: StorageWidgetProvider()) { entry in
             StorageWidgetEntryView(entry: entry)
                 .containerBackground(.fill.tertiary, for: .widget)
         }
-        .configurationDisplayName("Storage Information")
-        .description("Displays the device's internal storage details.")
+        .configurationDisplayName(StorageWatcherStrings.storageInformation.rawValue)
+        .description(StorageWatcherStrings.storageInformationDescription.rawValue)
         .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
     }
 }

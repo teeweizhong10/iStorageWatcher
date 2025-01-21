@@ -13,11 +13,12 @@ struct ContentView: View {
     var body: some View {
         VStack {
             if let info = storageInfo {
-                Text(String(format: "Total: %.2f GB", info.totalSpaceInGB))
-                Text(String(format: "Used: %.2f GB", info.usedSpaceInGB))
-                Text(String(format: "Free: %.2f GB", info.freeSpaceInGB))
+                Text(String(format: "\(StorageWatcherStrings.total.rawValue) %.2f GB", info.totalSpaceInGB))
+                Text(String(format: "\(StorageWatcherStrings.used.rawValue) %.2f GB", info.usedSpaceInGB))
+                Text(String(format: "\(StorageWatcherStrings.free.rawValue) %.2f GB", info.freeSpaceInGB))
+                storageSettingsButton
             } else {
-                Text("Fetching storage information...")
+                Text(StorageWatcherStrings.fetchingStorageInfo.rawValue)
             }
         }
         .padding()
@@ -25,6 +26,24 @@ struct ContentView: View {
             storageInfo = StorageManager.shared.getStorageInfo()
         }
     }
+
+    var storageSettingsButton: some View {
+            Button(action: {
+                #if os(iOS)
+                if let url = URL(string: UIApplication.openSettingsURLString) {
+                    UIApplication.shared.open(url)
+                }
+                #elseif os(macOS)
+                if let url = URL(string: "x-apple.systempreferences:com.apple.StorageManagement-Settings.extension") {
+                    NSWorkspace.shared.open(url)
+                }
+                #endif
+            }) {
+                Text("Open Storage Settings")
+                    .font(.headline)
+                    .padding()
+            }
+        }
 }
 
 #Preview {

@@ -17,15 +17,15 @@ struct iStorageWidgetiOSEntryView : View {
 }
 
 struct iStorageWidgetiOS: Widget {
-    let kind: String = "iStorageWidgetiOS"
+    let kind: String = StorageWatcherStrings.iStorageWidgetiOSType.rawValue
 
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: StorageWidgetProvider()) { entry in
             StorageWidgetEntryView(entry: entry)
                 .containerBackground(.fill.tertiary, for: .widget)
         }
-        .configurationDisplayName("Storage Information")
-        .description("Displays the device's internal storage details.")
+        .configurationDisplayName(StorageWatcherStrings.storageInformation.rawValue)
+        .description(StorageWatcherStrings.storageInformationDescription.rawValue)
         .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
     }
 }

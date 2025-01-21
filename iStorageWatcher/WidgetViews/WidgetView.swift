@@ -51,30 +51,36 @@ struct StorageWidgetEntryView : View {
         case .systemSmall:
             VStack {
                 HStack {
-                    Text("Available Storage")
+                    Text(StorageWatcherStrings.availableStorage.rawValue)
+                        .font(.headline)
+                        .lineLimit(2)
+                        .minimumScaleFactor(0.5)
+                    Spacer()
+                    Text("\(Image(systemName: "internaldrive.fill"))")
+                }
+                StorageRingView(percentage: entry.storageInfo.usedSpacePercentage, storageInGB: entry.storageInfo.freeSpaceInGB)
+            }
+        case .systemMedium:
+            VStack(alignment: .leading) {
+                HStack {
+                    Text(StorageWatcherStrings.storage.rawValue)
                         .font(.headline)
                     Spacer()
                     Text("\(Image(systemName: "internaldrive.fill"))")
                 }
-                Divider()
-                Text(String(format: "%.1f GB", entry.storageInfo.freeSpaceInGB))
-            }
-        case .systemMedium:
-            VStack(alignment: .leading) {
-                Text("Storage")
-                    .font(.headline)
+                Spacer()
                 HStack {
-                    Text("Total:")
+                    Text(StorageWatcherStrings.total.rawValue)
                     Spacer()
                     Text(String(format: "%.1f GB", entry.storageInfo.totalSpaceInGB))
                 }
                 HStack {
-                    Text("Used:")
+                    Text(StorageWatcherStrings.used.rawValue)
                     Spacer()
                     Text(String(format: "%.1f GB", entry.storageInfo.usedSpaceInGB))
                 }
                 HStack {
-                    Text("Free:")
+                    Text(StorageWatcherStrings.free.rawValue)
                     Spacer()
                     Text(String(format: "%.1f GB", entry.storageInfo.freeSpaceInGB))
                 }
@@ -82,32 +88,45 @@ struct StorageWidgetEntryView : View {
             .padding()
         case .systemLarge, .systemExtraLarge:
             VStack(alignment: .leading) {
-                Text("Device Storage Information")
-                    .font(.headline)
-                Divider()
                 HStack {
-                    Text("Total Space:")
+                    Text(StorageWatcherStrings.deviceStorageInformation.rawValue)
+                        .font(.headline)
+                    Spacer()
+                    Text("\(Image(systemName: "internaldrive.fill"))")
+                }
+                Divider()
+                Spacer()
+                HStack {
+                    Text(StorageWatcherStrings.totalSpace.rawValue)
                     Spacer()
                     Text(String(format: "%.2f GB", entry.storageInfo.totalSpaceInGB))
+                    
                 }
                 HStack {
-                    Text("Used Space:")
+                    Text(StorageWatcherStrings.usedSpace.rawValue)
                     Spacer()
                     Text(String(format: "%.2f GB", entry.storageInfo.usedSpaceInGB))
                 }
                 HStack {
-                    Text("Free Space:")
+                    Text(StorageWatcherStrings.freeSpace.rawValue)
                     Spacer()
                     Text(String(format: "%.2f GB", entry.storageInfo.freeSpaceInGB))
                 }
                 Spacer()
-                Text("Last Updated: \(entry.date, style: .time)")
+                HStack {
+                    Spacer()
+                    StorageRingView(percentage: entry.storageInfo.usedSpacePercentage)
+                    Spacer()
+                }
+                Spacer()
+                Text("\(StorageWatcherStrings.lastUpdated.rawValue) \(entry.date, style: .time)")
                     .font(.footnote)
                     .foregroundColor(.gray)
+
             }
             .padding()
         @unknown default:
-            Text("Unsupported size")
+            Text(StorageWatcherStrings.unsupportedSize.rawValue)
         }
     }
 }
