@@ -9,10 +9,10 @@
 /* Begin PBXBuildFile section */
 		4A3580C52D210B88000E7615 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A3580C42D210B88000E7615 /* WidgetKit.framework */; };
 		4A3580C72D210B88000E7615 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A3580C62D210B88000E7615 /* SwiftUI.framework */; };
-		4A3580D52D210B8A000E7615 /* iStorageWidgetMacOSExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 4A3580C22D210B88000E7615 /* iStorageWidgetMacOSExtension.appex */; platformFilters = (macos, ); settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		4A3580D52D210B8A000E7615 /* iStorageWidgetMacOSExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 4A3580C22D210B88000E7615 /* iStorageWidgetMacOSExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4A3580EC2D224AD8000E7615 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A3580C42D210B88000E7615 /* WidgetKit.framework */; };
 		4A3580ED2D224AD8000E7615 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A3580C62D210B88000E7615 /* SwiftUI.framework */; };
-		4A3580FE2D224AD9000E7615 /* iStorageWidgetiOSExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 4A3580EB2D224AD8000E7615 /* iStorageWidgetiOSExtension.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		4A3580FE2D224AD9000E7615 /* iStorageWidgetiOSExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 4A3580EB2D224AD8000E7615 /* iStorageWidgetiOSExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -480,15 +480,11 @@
 /* Begin PBXTargetDependency section */
 		4A3580D42D210B8A000E7615 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			platformFilters = (
-				macos,
-			);
 			target = 4A3580C12D210B88000E7615 /* iStorageWidgetMacOSExtension */;
 			targetProxy = 4A3580D32D210B8A000E7615 /* PBXContainerItemProxy */;
 		};
 		4A3580FD2D224AD9000E7615 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			platformFilter = ios;
 			target = 4A3580EA2D224AD8000E7615 /* iStorageWidgetiOSExtension */;
 			targetProxy = 4A3580FC2D224AD9000E7615 /* PBXContainerItemProxy */;
 		};
@@ -784,6 +780,7 @@
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -831,6 +828,7 @@
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
