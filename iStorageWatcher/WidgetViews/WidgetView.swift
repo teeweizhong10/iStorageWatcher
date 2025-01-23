@@ -58,6 +58,7 @@ struct StorageWidgetEntryView : View {
                     Spacer()
                     Text("\(Image(systemName: "internaldrive.fill"))")
                 }
+                Spacer()
                 StorageRingView(percentage: entry.storageInfo.usedSpacePercentage, storageInGB: entry.storageInfo.freeSpaceInGB)
             }
         case .systemMedium:
