@@ -15,10 +15,14 @@ enum StorageWatcherStrings: String {
     case storageInformation = "Storage Information"
     case storageInformationDescription = "Displays the device's internal storage details."
 
+    case appName = "iStorageWatcher"
+    case openSystemSettings = "Open System Settings"
+
     case availableStorage = "Available Storage"
     case storage = "Storage"
     case total = "Total:"
     case used = "Used:"
+    case used_ = "used"
     case free = "Free:"
 
     case deviceStorageInformation = "Device Storage Information"
@@ -26,7 +30,15 @@ enum StorageWatcherStrings: String {
     case usedSpace = "Used Space:"
     case freeSpace = "Free Space:"
 
-    case lastUpdated = "Last Updated:"
+    case totalSpace_ = "Total Space"
+    case usedSpace_ = "Used Space"
+    case freeSpace_ = "Free Space"
+
+    case lastUpdated = "Last updated:"
     case unsupportedSize = "Unsupported size"
+    case unknownDevice = "Unknown device"
+    case iPhone = "iPhone"
+    case iPad = "iPad"
+    case mac = "Mac"
 
 }

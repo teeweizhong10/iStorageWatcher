@@ -1,18 +1,16 @@
 import SwiftUI
 
-struct StorageRingView: View {
-    var percentage: Double 
+struct WidgetRingView: View {
+    var percentage: Double
     var storageInGB: Double?
 
     private var ringColor: Color {
-        switch percentage {
-        case 0.0..<50.0:
-            return .green
-        case 50.0..<80.0:
-            return .yellow
-        default:
-            return .red
-        }
+        let normalizedPercentage = percentage / 100
+        return Color(
+            hue: (1.0 - normalizedPercentage) * 0.4, // Green to Red in hue
+            saturation: 1.0,
+            brightness: 1.0
+        )
     }
 
     var body: some View {
@@ -29,7 +27,7 @@ struct StorageRingView: View {
                     .font(.system(size: 14, weight: .bold))
                     .foregroundColor(.primary)
             } else {
-                Text("\(percentage, specifier: "%.1f")%\nused")
+                Text("\(percentage, specifier: "%.1f")%\n\(StorageWatcherStrings.used_.rawValue)")
                     .font(.system(size: 14, weight: .bold))
                     .foregroundColor(.primary)
                     .multilineTextAlignment(.center)
@@ -41,7 +39,7 @@ struct StorageRingView: View {
 
 struct StorageRingView_Previews: PreviewProvider {
     static var previews: some View {
-        StorageRingView(percentage: 75.0, storageInGB: 64.5)
+        WidgetRingView(percentage: 75.0, storageInGB: 64.5)
             .previewLayout(.sizeThatFits)
     }
 }
