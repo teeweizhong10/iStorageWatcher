@@ -84,7 +84,7 @@
 			membershipExceptions = (
 				Shared/StorageInfo.swift,
 				Shared/Strings.swift,
-				WidgetViews/smallWidgetView.swift,
+				WidgetViews/WidgetRingView.swift,
 				WidgetViews/WidgetView.swift,
 			);
 			target = 4A3580C12D210B88000E7615 /* iStorageWidgetMacOSExtension */;
@@ -101,7 +101,7 @@
 			membershipExceptions = (
 				Shared/StorageInfo.swift,
 				Shared/Strings.swift,
-				WidgetViews/smallWidgetView.swift,
+				WidgetViews/WidgetRingView.swift,
 				WidgetViews/WidgetView.swift,
 			);
 			target = 4A3580EA2D224AD8000E7615 /* iStorageWidgetiOSExtension */;

@@ -11,39 +11,34 @@ struct ContentView: View {
     @State private var storageInfo: StorageInfo?
 
     var body: some View {
+#if os(iOS)
+        NavigationView {
+            VStack {
+                if let info = storageInfo {
+                    HomeView(storageInfo: info)
+                } else {
+                    Text(StorageWatcherStrings.fetchingStorageInfo.rawValue)
+                }
+                Spacer()
+            }
+            .navigationTitle(StorageWatcherStrings.appName.rawValue)
+        }
+        .onAppear {
+            storageInfo = StorageManager.shared.getStorageInfo()
+        }
+#elseif os(macOS)
         VStack {
             if let info = storageInfo {
-                Text(String(format: "\(StorageWatcherStrings.total.rawValue) %.2f GB", info.totalSpaceInGB))
-                Text(String(format: "\(StorageWatcherStrings.used.rawValue) %.2f GB", info.usedSpaceInGB))
-                Text(String(format: "\(StorageWatcherStrings.free.rawValue) %.2f GB", info.freeSpaceInGB))
-                storageSettingsButton
+                HomeView(storageInfo: info)
             } else {
                 Text(StorageWatcherStrings.fetchingStorageInfo.rawValue)
             }
         }
-        .padding()
         .onAppear {
             storageInfo = StorageManager.shared.getStorageInfo()
         }
+#endif
     }
-
-    var storageSettingsButton: some View {
-            Button(action: {
-                #if os(iOS)
-                if let url = URL(string: UIApplication.openSettingsURLString) {
-                    UIApplication.shared.open(url)
-                }
-                #elseif os(macOS)
-                if let url = URL(string: "x-apple.systempreferences:com.apple.StorageManagement-Settings.extension") {
-                    NSWorkspace.shared.open(url)
-                }
-                #endif
-            }) {
-                Text("Open Storage Settings")
-                    .font(.headline)
-                    .padding()
-            }
-        }
 }
 
 #Preview {

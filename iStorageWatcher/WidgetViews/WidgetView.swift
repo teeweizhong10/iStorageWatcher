@@ -59,7 +59,7 @@ struct StorageWidgetEntryView : View {
                     Text("\(Image(systemName: "internaldrive.fill"))")
                 }
                 Spacer()
-                StorageRingView(percentage: entry.storageInfo.usedSpacePercentage, storageInGB: entry.storageInfo.freeSpaceInGB)
+                WidgetRingView(percentage: entry.storageInfo.usedSpacePercentage, storageInGB: entry.storageInfo.freeSpaceInGB)
             }
         case .systemMedium:
             VStack(alignment: .leading) {
@@ -116,7 +116,7 @@ struct StorageWidgetEntryView : View {
                 Spacer()
                 HStack {
                     Spacer()
-                    StorageRingView(percentage: entry.storageInfo.usedSpacePercentage)
+                    WidgetRingView(percentage: entry.storageInfo.usedSpacePercentage)
                     Spacer()
                 }
                 Spacer()
