@@ -23,7 +23,6 @@ struct ContentView: View {
             }
             .navigationTitle(StorageWatcherStrings.appName.rawValue)
         }
-
         .onAppear {
             storageInfo = StorageManager.shared.getStorageInfo()
         }
