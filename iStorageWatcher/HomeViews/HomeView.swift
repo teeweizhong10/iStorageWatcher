@@ -15,7 +15,11 @@ struct HomeView: View {
     }
 
     var body: some View {
-        StorageDetailView(storageInfo: storageInfo)
+        VStack {
+            StorageDetailView(storageInfo: storageInfo)
+            Spacer()
+            HintView()
+        }
     }
 }
 

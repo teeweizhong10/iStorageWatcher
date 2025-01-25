@@ -17,6 +17,7 @@ enum StorageWatcherStrings: String {
 
     case appName = "iStorageWatcher"
     case openSystemSettings = "Open System Settings"
+    case widgetHint = "Add widgets to your home screen for quick storage monitoring"
 
     case availableStorage = "Available Storage"
     case storage = "Storage"

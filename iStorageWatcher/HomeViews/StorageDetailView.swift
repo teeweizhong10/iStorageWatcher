@@ -32,7 +32,7 @@ struct StorageDetailView: View {
                         .foregroundColor(.gray)
                 } icon: {
                     Circle()
-                        .fill(Color.blue)
+                        .fill(Color.blue.opacity(0.5))
                         .frame(width: 10, height: 10)
                 }
                 .padding(.horizontal)
@@ -44,7 +44,7 @@ struct StorageDetailView: View {
                         .foregroundColor(.gray)
                 } icon: {
                     Circle()
-                        .fill(Color.blue)
+                        .fill(Color.yellow.opacity(0.5))
                         .frame(width: 10, height: 10)
                 }
                 .padding(.horizontal)
@@ -57,7 +57,7 @@ struct StorageDetailView: View {
                         .foregroundColor(.gray)
                 } icon: {
                     Circle()
-                        .fill(Color.gray.opacity(0.5))
+                        .fill(Color.green.opacity(0.5))
                         .frame(width: 10, height: 10)
                 }
                 .padding(.horizontal)

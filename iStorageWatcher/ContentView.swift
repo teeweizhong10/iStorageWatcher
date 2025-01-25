@@ -13,15 +13,17 @@ struct ContentView: View {
     var body: some View {
 #if os(iOS)
         NavigationView {
-            ScrollView(content: {
+            VStack {
                 if let info = storageInfo {
                     HomeView(storageInfo: info)
                 } else {
                     Text(StorageWatcherStrings.fetchingStorageInfo.rawValue)
                 }
-            })
+                Spacer()
+            }
             .navigationTitle(StorageWatcherStrings.appName.rawValue)
         }
+
         .onAppear {
             storageInfo = StorageManager.shared.getStorageInfo()
         }
