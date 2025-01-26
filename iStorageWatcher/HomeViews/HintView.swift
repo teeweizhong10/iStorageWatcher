@@ -12,9 +12,11 @@ struct HintView: View {
         HStack {
             Image(systemName: "lightbulb")
                 .foregroundColor(Color.blue)
-                .padding()
+                .padding(.horizontal)
             Text(StorageWatcherStrings.widgetHint.rawValue)
                 .foregroundColor(Color.blue)
+                .padding(.trailing)
+                .padding(.vertical)
         }
         .padding()
         .background(Color.blue.opacity(0.1))

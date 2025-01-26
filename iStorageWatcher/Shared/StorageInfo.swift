@@ -51,14 +51,21 @@ class StorageManager {
     private init() {}
 
     func getStorageInfo() -> StorageInfo? {
+        let fileURL = URL(fileURLWithPath: NSHomeDirectory() as String)
+
         do {
-            let attributes = try FileManager.default.attributesOfFileSystem(forPath: NSHomeDirectory())
-            if let totalSpace = attributes[.systemSize] as? UInt64,
-               let freeSpace = attributes[.systemFreeSize] as? UInt64 {
-                return StorageInfo(totalSpace: totalSpace, freeSpace: freeSpace)
+            let keys: Set<URLResourceKey> = [
+                .volumeAvailableCapacityForImportantUsageKey,
+                .volumeTotalCapacityKey
+            ]
+            let values = try fileURL.resourceValues(forKeys: keys)
+
+            if let totalCapacity = values.volumeTotalCapacity,
+               let availableCapacity = values.volumeAvailableCapacityForImportantUsage {
+                return StorageInfo(totalSpace: UInt64(totalCapacity), freeSpace: UInt64(availableCapacity))
             }
         } catch {
-            print("Error retrieving storage info: \(error.localizedDescription)")
+            print("Error retrieving file system attributes: \(error.localizedDescription)")
         }
         return nil
     }

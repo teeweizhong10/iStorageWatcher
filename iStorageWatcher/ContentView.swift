@@ -30,6 +30,7 @@ struct ContentView: View {
         VStack {
             if let info = storageInfo {
                 HomeView(storageInfo: info)
+                    .padding()
             } else {
                 Text(StorageWatcherStrings.fetchingStorageInfo.rawValue)
             }
