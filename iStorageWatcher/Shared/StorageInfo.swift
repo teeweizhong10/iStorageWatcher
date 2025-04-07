@@ -45,10 +45,8 @@ extension Double {
     }
 }
 
-class StorageManager {
+struct StorageManager {
     static let shared = StorageManager()
-
-    private init() {}
 
     func getStorageInfo() -> StorageInfo? {
         let fileURL = URL(fileURLWithPath: NSHomeDirectory() as String)

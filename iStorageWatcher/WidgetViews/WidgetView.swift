@@ -8,7 +8,6 @@ import WidgetKit
 import SwiftUI
 
 struct StorageWidgetProvider: TimelineProvider {
-    // Associate the 'Entry' type with 'SimpleEntry'
     typealias Entry = SimpleEntry
 
     func placeholder(in context: Context) -> SimpleEntry {
@@ -27,11 +26,20 @@ struct StorageWidgetProvider: TimelineProvider {
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<SimpleEntry>) -> ()) {
-        let entry = SimpleEntry(
-            date: Date(),
-            storageInfo: StorageManager.shared.getStorageInfo() ?? StorageInfo(totalSpace: 500_000_000_000, freeSpace: 200_000_000_000)
-        )
-        let timeline = Timeline(entries: [entry], policy: .after(Date().addingTimeInterval(60 * 15))) // Refresh every 15 minutes
+        var entries: [SimpleEntry] = []
+        let currentDate = Date()
+
+        // Generate a timeline consisting of entries every 15 minutes for the next 24 hours
+        for minuteOffset in stride(from: 0, to: 24 * 60, by: 15) {
+            let entryDate = Calendar.current.date(byAdding: .minute, value: minuteOffset, to: currentDate)!
+            let entry = SimpleEntry(
+                date: entryDate,
+                storageInfo: StorageManager.shared.getStorageInfo() ?? StorageInfo(totalSpace: 500_000_000_000, freeSpace: 200_000_000_000)
+            )
+            entries.append(entry)
+        }
+
+        let timeline = Timeline(entries: entries, policy: .atEnd)
         completion(timeline)
     }
 }
