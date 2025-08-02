@@ -28,11 +28,6 @@ class StatusBarManager: ObservableObject {
     
     func updateStatusBarItem() {
         if isMenuBarMode {
-            DispatchQueue.main.async {
-                if let window = NSApplication.shared.windows.first {
-                    window.close()
-                }
-            }
             setupStatusBarItem()
         } else {
             removeStatusBarItem()
@@ -114,14 +109,6 @@ struct iStorageWatcherApp: App {
                 }
                 .onChange(of: showAsMenuBar) { newValue in
                     statusBarManager.isMenuBarMode = newValue
-
-                    if newValue {
-                        DispatchQueue.main.async {
-                            if let window = NSApplication.shared.windows.first {
-                                window.close()
-                            }
-                        }
-                    }
                 }
             #else
             ContentView()
