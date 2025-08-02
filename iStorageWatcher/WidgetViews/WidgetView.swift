@@ -26,20 +26,13 @@ struct StorageWidgetProvider: TimelineProvider {
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<SimpleEntry>) -> ()) {
-        var entries: [SimpleEntry] = []
         let currentDate = Date()
-
-        // Generate a timeline consisting of entries every 15 minutes for the next 24 hours
-        for minuteOffset in stride(from: 0, to: 24 * 60, by: 15) {
-            let entryDate = Calendar.current.date(byAdding: .minute, value: minuteOffset, to: currentDate)!
-            let entry = SimpleEntry(
-                date: entryDate,
-                storageInfo: StorageManager.shared.getStorageInfo() ?? StorageInfo(totalSpace: 500_000_000_000, freeSpace: 200_000_000_000)
-            )
-            entries.append(entry)
-        }
-
-        let timeline = Timeline(entries: entries, policy: .atEnd)
+        let entry = SimpleEntry(
+            date: currentDate,
+            storageInfo: StorageManager.shared.getStorageInfo() ?? StorageInfo(totalSpace: 500_000_000_000, freeSpace: 200_000_000_000)
+        )
+        let refreshDate = Calendar.current.date(byAdding: .minute, value: 15, to: currentDate)!
+        let timeline = Timeline(entries: [entry], policy: .after(refreshDate))
         completion(timeline)
     }
 }
@@ -68,6 +61,13 @@ struct StorageWidgetEntryView : View {
                 }
                 Spacer()
                 WidgetRingView(percentage: entry.storageInfo.usedSpacePercentage, storageInGB: entry.storageInfo.freeSpaceInGB)
+                HStack {
+                    Text("\(StorageWatcherStrings.lastUpdated.rawValue) \(entry.date, style: .time)")
+                        .font(.footnote)
+                        .foregroundColor(.gray)
+                        .italic()
+                    Spacer()
+                }
             }
         case .systemMedium:
             VStack(alignment: .leading) {
@@ -92,6 +92,13 @@ struct StorageWidgetEntryView : View {
                     Text(StorageWatcherStrings.free.rawValue)
                     Spacer()
                     Text(String(format: "%.1f GB", entry.storageInfo.freeSpaceInGB))
+                }
+                HStack {
+                    Text("\(StorageWatcherStrings.lastUpdated.rawValue) \(entry.date, style: .time)")
+                        .font(.footnote)
+                        .foregroundColor(.gray)
+                        .italic()
+                    Spacer()
                 }
             }
             .padding()
@@ -128,9 +135,13 @@ struct StorageWidgetEntryView : View {
                     Spacer()
                 }
                 Spacer()
-                Text("\(StorageWatcherStrings.lastUpdated.rawValue) \(entry.date, style: .time)")
-                    .font(.footnote)
-                    .foregroundColor(.gray)
+                HStack {
+                    Text("\(StorageWatcherStrings.lastUpdated.rawValue) \(entry.date, style: .time)")
+                        .font(.footnote)
+                        .foregroundColor(.gray)
+                        .italic()
+                    Spacer()
+                }
 
             }
             .padding()
