@@ -22,7 +22,26 @@ struct ContentView: View {
     
     var body: some View {
         #if os(iOS)
+        // Sidebar-based layout kept for reference
+        /*
         NavigationView {
+            VStack {
+                if let info = storageInfo {
+                    HomeView(storageInfo: info)
+                } else {
+                    Text(StorageWatcherStrings.fetchingStorageInfo.rawValue)
+                }
+                Spacer()
+            }
+            .navigationTitle(StorageWatcherStrings.appName.rawValue)
+        }
+        .onAppear {
+            storageInfo = StorageManager.shared.getStorageInfo()
+        }
+        */
+
+        // Use NavigationStack so the content appears in the main view on iPad
+        NavigationStack {
             VStack {
                 if let info = storageInfo {
                     HomeView(storageInfo: info)
