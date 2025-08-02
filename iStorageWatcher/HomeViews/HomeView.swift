@@ -26,15 +26,20 @@ struct HomeView: View {
     var body: some View {
         VStack {
             StorageDetailView(storageInfo: storageInfo)
-            
+
             #if os(macOS)
             // Add the menu bar toggle directly in the home view
             Toggle(StorageWatcherStrings.showAsMenubarIcon.rawValue, isOn: $isMenuBarMode)
                 .padding(.horizontal)
-            #endif
-            
+
+            if !isMenuBarMode {
+                HintView()
+                    .padding()
+            }
+            #else
             HintView()
                 .padding()
+            #endif
         }
     }
 }
