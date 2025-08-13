@@ -103,13 +103,22 @@ struct iStorageWatcherApp: App {
         WindowGroup {
             #if os(macOS)
             ContentView(isMenuBarMode: $showAsMenuBar)
-                .frame(minWidth: 400, minHeight: 300)
+                .frame(width: 600, height: 600) // Set your desired fixed size here
                 .onAppear {
                     statusBarManager.isMenuBarMode = showAsMenuBar
                 }
                 .onChange(of: showAsMenuBar) { newValue in
                     statusBarManager.isMenuBarMode = newValue
                 }
+                .background(WindowAccessor { window in
+                    guard let window = window else { return }
+                    let fixedSize = NSSize(width: 500, height: 400)
+                    window.setContentSize(fixedSize)
+                    window.minSize = fixedSize
+                    window.maxSize = fixedSize
+                    window.styleMask.remove(.resizable)
+                    NSApp.activate(ignoringOtherApps: true)
+                })
             #else
             ContentView()
             #endif

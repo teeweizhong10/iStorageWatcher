@@ -29,13 +29,14 @@ struct HomeView: View {
 
             #if os(macOS)
             // Add the menu bar toggle directly in the home view
-            Toggle(StorageWatcherStrings.showAsMenubarIcon.rawValue, isOn: $isMenuBarMode)
-                .padding(.horizontal)
-
-            if !isMenuBarMode {
-                HintView()
-                    .padding()
-            }
+        //TODO: Reimplment menubar toggle one day
+//            Toggle(StorageWatcherStrings.showAsMenubarIcon.rawValue, isOn: $isMenuBarMode)
+//                .padding(.horizontal)
+//
+//            if !isMenuBarMode {
+//                HintView()
+//                    .padding()
+//            }
             #else
             HintView()
                 .padding()

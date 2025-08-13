@@ -82,6 +82,7 @@
 		4A3580DC2D210D68000E7615 /* Exceptions for "iStorageWatcher" folder in "iStorageWidgetMacOSExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				Shared/Localizable.xcstrings,
 				Shared/StorageInfo.swift,
 				Shared/Strings.swift,
 				WidgetViews/WidgetRingView.swift,
@@ -99,6 +100,7 @@
 		4A3581062D224B1F000E7615 /* Exceptions for "iStorageWatcher" folder in "iStorageWidgetiOSExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				Shared/Localizable.xcstrings,
 				Shared/StorageInfo.swift,
 				Shared/Strings.swift,
 				WidgetViews/WidgetRingView.swift,
@@ -687,6 +689,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -741,6 +744,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 			};
 			name = Release;
 		};
