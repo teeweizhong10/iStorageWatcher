@@ -37,8 +37,9 @@ struct HomeView: View {
 //                HintView()
 //                    .padding()
 //            }
+            BatteryHealthView()
             #else
-            HintView()
+            BatteryHealthView()
                 .padding()
             #endif
         }

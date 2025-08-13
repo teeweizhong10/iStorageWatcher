@@ -33,7 +33,7 @@ struct StorageDetailView: View {
                 RingView(percentage: storageInfo.usedSpacePercentage)
                 StorageNumbers(storageInfo: storageInfo)
             }
-            .padding()
+            .padding(.horizontal)
             Spacer()
             #endif
 
@@ -57,7 +57,7 @@ struct StorageDetailView: View {
             Text(StorageWatcherStrings.openSystemSettings.rawValue)
                 .fontWeight(.bold)
         }
-        .padding()
+        .padding(.horizontal)
     }
 }
 

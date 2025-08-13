@@ -26,6 +26,16 @@
           }
         }
       }
+    },
+    "Battery Health: %.0f%% (%@)" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Battery Health: %1$.0f%% (%2$@)"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"
