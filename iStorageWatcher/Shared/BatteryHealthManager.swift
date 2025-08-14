@@ -66,7 +66,6 @@ class BatteryHealthManager: ObservableObject, Sendable {
                     let data = pipe.fileHandleForReading.readDataToEndOfFile()
                     let output = String(data: data, encoding: .utf8) ?? ""
                     
-                    print("🔋 ioreg output length: \(output.count)")
                     
                     // Parse the output for battery properties
                     var designCapacity: Int?
@@ -81,21 +80,17 @@ class BatteryHealthManager: ObservableObject, Sendable {
                         if trimmed.contains("DesignCapacity") {
                             if let value = self.extractIntegerValue(from: trimmed) {
                                 designCapacity = value
-                                print("🔋 Found DesignCapacity: \(value)")
                             }
                         } else if trimmed.contains("NominalChargeCapacity") {
                             if let value = self.extractIntegerValue(from: trimmed) {
                                 nominalCapacity = value
-                                print("🔋 Found NominalChargeCapacity: \(value)")
                             }
                         } else if trimmed.contains("CurrentCapacity") {
                             if let value = self.extractIntegerValue(from: trimmed) {
                                 currentCapacity = value
-                                print("🔋 Found CurrentCapacity: \(value)")
                             }
                         } else if trimmed.contains("IsCharging") {
                             chargingStatus = trimmed.contains("Yes")
-                            print("🔋 Found IsCharging: \(chargingStatus ?? false)")
                         }
                     }
                     
@@ -103,17 +98,14 @@ class BatteryHealthManager: ObservableObject, Sendable {
                         // Calculate and update the published properties.
                         if let design = designCapacity, let nominal = nominalCapacity, design > 0 {
                             self.batteryHealth = (Double(nominal) / Double(design)) * 100.0
-                            print("🔋 Battery Health: \(self.batteryHealth)%")
                         }
                         
                         if let current = currentCapacity, let nominal = nominalCapacity, nominal > 0 {
                             self.batteryCapacity = Int(round((Double(current) / Double(nominal)) * 100.0))
-                            print("🔋 Battery Capacity: \(self.batteryCapacity)%")
                         }
                         
                         if let isCharging = chargingStatus {
                             self.isCharging = isCharging
-                            print("🔋 Is Charging: \(self.isCharging)")
                         }
                         
                         continuation.resume()
