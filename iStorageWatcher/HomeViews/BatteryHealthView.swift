@@ -43,7 +43,9 @@ struct BatteryHealthView: View {
         .padding(.horizontal)
         #if os(macOS)
         .onAppear {
-            batteryManager.updateBatteryInfo()
+            Task {
+                await batteryManager.updateBatteryInfo()
+            }
         }
         #endif
     }
