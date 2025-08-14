@@ -23,7 +23,6 @@ class BatteryHealthManager: ObservableObject, Sendable {
         await withCheckedContinuation { continuation in
             DispatchQueue.global(qos: .background).async {
                 do {
-                    // Use a more specific ioreg command that targets battery information only
                     let process = Process()
                     process.executableURL = URL(fileURLWithPath: "/usr/sbin/ioreg")
                     process.arguments = ["-r", "-c", "AppleSmartBattery", "-w0"]
