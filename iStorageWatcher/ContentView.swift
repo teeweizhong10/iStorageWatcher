@@ -29,11 +29,11 @@ struct ContentView: View {
                 if let info = storageInfo {
                     HomeView(storageInfo: info)
                 } else {
-                    Text(StorageWatcherStrings.fetchingStorageInfo.rawValue)
+                    Text("Fetching storage information...")
                 }
                 Spacer()
             }
-            .navigationTitle(StorageWatcherStrings.appName.rawValue)
+            .navigationTitle("iStorageWatcher")
         }
         .onAppear {
             storageInfo = StorageManager.shared.getStorageInfo()
@@ -46,11 +46,11 @@ struct ContentView: View {
                 if let info = storageInfo {
                     HomeView(storageInfo: info)
                 } else {
-                    Text(StorageWatcherStrings.fetchingStorageInfo.rawValue)
+                    Text("Fetching storage information...")
                 }
                 Spacer()
             }
-            .navigationTitle(StorageWatcherStrings.appName.rawValue)
+            .navigationTitle("iStorageWatcher")
         }
         .onAppear {
             storageInfo = StorageManager.shared.getStorageInfo()
@@ -62,7 +62,7 @@ struct ContentView: View {
                     HomeView(storageInfo: info, isMenuBarMode: $isMenuBarMode)
                         .padding()
                 } else {
-                    Text(StorageWatcherStrings.fetchingStorageInfo.rawValue)
+                    Text("Fetching storage information...")
                 }
             }
         }

@@ -82,8 +82,8 @@
 		4A3580DC2D210D68000E7615 /* Exceptions for "iStorageWatcher" folder in "iStorageWidgetMacOSExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				Shared/Localizable.xcstrings,
 				Shared/StorageInfo.swift,
-				Shared/Strings.swift,
 				WidgetViews/WidgetRingView.swift,
 				WidgetViews/WidgetView.swift,
 			);
@@ -99,8 +99,8 @@
 		4A3581062D224B1F000E7615 /* Exceptions for "iStorageWatcher" folder in "iStorageWidgetiOSExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				Shared/Localizable.xcstrings,
 				Shared/StorageInfo.swift,
-				Shared/Strings.swift,
 				WidgetViews/WidgetRingView.swift,
 				WidgetViews/WidgetView.swift,
 			);
@@ -387,6 +387,8 @@
 			);
 			mainGroup = 4AE800A62D2107AF00D23196;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 4AE800B02D2107AF00D23196 /* Products */;
 			projectDirPath = "";
@@ -575,7 +577,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = FG6VT6A3M9;
+				DEVELOPMENT_TEAM = WSM9CCA2PS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iStorageWidgetiOS/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = iStorageWidgetiOS;
@@ -606,7 +608,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = FG6VT6A3M9;
+				DEVELOPMENT_TEAM = WSM9CCA2PS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iStorageWidgetiOS/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = iStorageWidgetiOS;
@@ -687,6 +689,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -741,6 +744,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 			};
 			name = Release;
 		};

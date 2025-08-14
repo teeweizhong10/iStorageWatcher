@@ -30,12 +30,12 @@ struct RingView: View {
                 .rotationEffect(.degrees(-90))
                 .animation(.easeOut, value: percentage)
 
-            Text("\(percentage, specifier: "%.1f")%\n\(StorageWatcherStrings.used_.rawValue)")
+            Text("\(percentage, specifier: "%.1f")%\n\("used")")
                 .font(.system(size: 20, weight: .bold))
                 .foregroundColor(.primary)
                 .multilineTextAlignment(.center)
         }
-        .frame(width: 150, height: 150)
+        .frame(width: 130, height: 130)
     }
 }
 

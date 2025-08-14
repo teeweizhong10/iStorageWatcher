@@ -27,7 +27,7 @@ struct WidgetRingView: View {
                     .font(.system(size: 14, weight: .bold))
                     .foregroundColor(.primary)
             } else {
-                Text("\(percentage, specifier: "%.1f")%\n\(StorageWatcherStrings.used_.rawValue)")
+                Text("\(percentage, specifier: "%.1f")%\n\("used")")
                     .font(.system(size: 14, weight: .bold))
                     .foregroundColor(.primary)
                     .multilineTextAlignment(.center)

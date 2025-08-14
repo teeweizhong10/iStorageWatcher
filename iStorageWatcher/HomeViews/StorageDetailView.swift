@@ -13,56 +13,28 @@ struct StorageDetailView: View {
     var body: some View {
         VStack {
             HStack {
-                Text(StorageWatcherStrings.storage.rawValue)
+                Text("Storage")
                     .font(.title2)
                     .fontWeight(.bold)
                 Spacer()
                 Text(getDeviceType())
                     .foregroundColor(.gray)
             }
-            .padding()
+            .padding(.horizontal)
 
+            #if os(iOS)
+            Spacer()
             RingView(percentage: storageInfo.usedSpacePercentage)
-
-            VStack {
-                Label {
-                    Text(StorageWatcherStrings.totalSpace_.rawValue)
-                    Spacer()
-                    Text("\(storageInfo.totalSpaceInGB, specifier: "%.1f") GB")
-                        .foregroundColor(.gray)
-                } icon: {
-                    Circle()
-                        .fill(Color.blue.opacity(0.5))
-                        .frame(width: 10, height: 10)
-                }
-                .padding(.horizontal)
-
-                Label {
-                    Text(StorageWatcherStrings.usedSpace_.rawValue)
-                    Spacer()
-                    Text("\(storageInfo.usedSpaceInGB, specifier: "%.1f") GB")
-                        .foregroundColor(.gray)
-                } icon: {
-                    Circle()
-                        .fill(Color.yellow.opacity(0.5))
-                        .frame(width: 10, height: 10)
-                }
-                .padding(.horizontal)
-
-
-                Label {
-                    Text(StorageWatcherStrings.freeSpace_.rawValue)
-                    Spacer()
-                    Text("\(storageInfo.freeSpaceInGB, specifier: "%.1f") GB")
-                        .foregroundColor(.gray)
-                } icon: {
-                    Circle()
-                        .fill(Color.green.opacity(0.5))
-                        .frame(width: 10, height: 10)
-                }
-                .padding(.horizontal)
+            Spacer()
+            StorageNumbers(storageInfo: storageInfo)
+            #elseif os(macOS)
+            Spacer()
+            HStack {
+                RingView(percentage: storageInfo.usedSpacePercentage)
+                StorageNumbers(storageInfo: storageInfo)
             }
-            .padding()
+            Spacer()
+            #endif
 
             openSettingsButton
         }
@@ -81,10 +53,10 @@ struct StorageDetailView: View {
             }
             #endif
         }) {
-            Text(StorageWatcherStrings.openSystemSettings.rawValue)
+            Text("Open System Settings")
                 .fontWeight(.bold)
         }
-        .padding()
+        .padding(.horizontal)
     }
 }
 
