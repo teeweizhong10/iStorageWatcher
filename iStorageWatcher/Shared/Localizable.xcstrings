@@ -30,6 +30,9 @@
         }
       }
     },
+    "Battery: %lld%% (Health not available)" : {
+
+    },
     "Device Storage Information" : {
 
     },
@@ -46,6 +49,9 @@
 
     },
     "Free:" : {
+
+    },
+    "iStorageWatcher" : {
 
     },
     "Last updated %@" : {

@@ -1,6 +1,7 @@
 import Foundation
 import Combine
 
+#if os(macOS)
 class BatteryHealthManager: ObservableObject, Sendable {
     // MARK: - Published Properties
     @Published var batteryHealth: Double = 0.0
@@ -170,3 +171,4 @@ class BatteryHealthManager: ObservableObject, Sendable {
         }
     }
 }
+#endif
