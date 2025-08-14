@@ -13,7 +13,7 @@ struct StorageDetailView: View {
     var body: some View {
         VStack {
             HStack {
-                Text(StorageWatcherStrings.storage.rawValue)
+                Text("Storage")
                     .font(.title2)
                     .fontWeight(.bold)
                 Spacer()
@@ -33,7 +33,6 @@ struct StorageDetailView: View {
                 RingView(percentage: storageInfo.usedSpacePercentage)
                 StorageNumbers(storageInfo: storageInfo)
             }
-            .padding(.horizontal)
             Spacer()
             #endif
 
@@ -54,7 +53,7 @@ struct StorageDetailView: View {
             }
             #endif
         }) {
-            Text(StorageWatcherStrings.openSystemSettings.rawValue)
+            Text("Open System Settings")
                 .fontWeight(.bold)
         }
         .padding(.horizontal)

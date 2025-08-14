@@ -11,46 +11,36 @@ struct StorageNumbers: View {
     let storageInfo: StorageInfo
 
     var body: some View {
-        VStack {
-            Label {
-                Text(StorageWatcherStrings.totalSpace_.rawValue)
-                Spacer()
-                Text("\(storageInfo.totalSpaceInGB, specifier: "%.1f") GB")
-                    .foregroundColor(.gray)
-            } icon: {
+        VStack(alignment: .leading, spacing: 10) {
+            HStack(spacing: 8) {
                 Circle()
                     .fill(Color.blue.opacity(0.5))
                     .frame(width: 10, height: 10)
-            }
-            .padding(.horizontal)
-
-            Label {
-                Text(StorageWatcherStrings.usedSpace_.rawValue)
-                Spacer()
-                Text("\(storageInfo.usedSpaceInGB, specifier: "%.1f") GB")
+                Text("Total Space")
+                    .frame(width: 110, alignment: .leading) // Adjust width as needed
+                Text("\(storageInfo.totalSpaceInGB, specifier: "%.1f") GB")
                     .foregroundColor(.gray)
-            } icon: {
+            }
+            HStack(spacing: 8) {
                 Circle()
                     .fill(Color.yellow.opacity(0.5))
                     .frame(width: 10, height: 10)
-            }
-            .padding(.horizontal)
-
-            Label {
-                Text(StorageWatcherStrings.freeSpace_.rawValue)
-                Spacer()
-                Text("\(storageInfo.freeSpaceInGB, specifier: "%.1f") GB")
+                Text("Used Space")
+                    .frame(width: 110, alignment: .leading)
+                Text("\(storageInfo.usedSpaceInGB, specifier: "%.1f") GB")
                     .foregroundColor(.gray)
-            } icon: {
+            }
+            HStack(spacing: 8) {
                 Circle()
                     .fill(Color.green.opacity(0.5))
                     .frame(width: 10, height: 10)
+                Text("Free Space")
+                    .frame(width: 110, alignment: .leading)
+                Text("\(storageInfo.freeSpaceInGB, specifier: "%.1f") GB")
+                    .foregroundColor(.gray)
             }
-            .padding(.horizontal)
         }
         .padding(.horizontal)
-
-
     }
 }
 

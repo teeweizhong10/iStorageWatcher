@@ -17,15 +17,8 @@
     "%@" : {
 
     },
-    "%@ %@" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$@ %2$@"
-          }
-        }
-      }
+    "Available Storage" : {
+
     },
     "Battery Health: %.0f%% (%@)" : {
       "localizations" : {
@@ -36,6 +29,57 @@
           }
         }
       }
+    },
+    "Device Storage Information" : {
+
+    },
+    "Displays the device's internal storage details." : {
+
+    },
+    "Fetching storage information..." : {
+
+    },
+    "Free Space" : {
+
+    },
+    "Free Space:" : {
+
+    },
+    "Free:" : {
+
+    },
+    "Last updated %@" : {
+
+    },
+    "Open System Settings" : {
+
+    },
+    "Storage" : {
+
+    },
+    "Storage Information" : {
+
+    },
+    "Total Space" : {
+
+    },
+    "Total Space:" : {
+
+    },
+    "Total:" : {
+
+    },
+    "Unsupported size" : {
+
+    },
+    "Used Space" : {
+
+    },
+    "Used Space:" : {
+
+    },
+    "Used:" : {
+
     }
   },
   "version" : "1.0"

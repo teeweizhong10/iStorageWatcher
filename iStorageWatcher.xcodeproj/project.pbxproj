@@ -84,7 +84,6 @@
 			membershipExceptions = (
 				Shared/Localizable.xcstrings,
 				Shared/StorageInfo.swift,
-				Shared/Strings.swift,
 				WidgetViews/WidgetRingView.swift,
 				WidgetViews/WidgetView.swift,
 			);
@@ -102,7 +101,6 @@
 			membershipExceptions = (
 				Shared/Localizable.xcstrings,
 				Shared/StorageInfo.swift,
-				Shared/Strings.swift,
 				WidgetViews/WidgetRingView.swift,
 				WidgetViews/WidgetView.swift,
 			);

@@ -52,7 +52,7 @@ struct StorageWidgetEntryView : View {
         case .systemSmall:
             VStack {
                 HStack {
-                    Text(StorageWatcherStrings.availableStorage.rawValue)
+                    Text("Available Storage")
                         .font(.headline)
                         .lineLimit(2)
                         .minimumScaleFactor(0.5)
@@ -62,7 +62,7 @@ struct StorageWidgetEntryView : View {
                 Spacer()
                 WidgetRingView(percentage: entry.storageInfo.usedSpacePercentage, storageInGB: entry.storageInfo.freeSpaceInGB)
                 HStack {
-                    Text("\(StorageWatcherStrings.lastUpdated.rawValue) \(entry.date, style: .time)")
+                    Text("Last updated \(entry.date, style: .time)")
                         .font(.footnote)
                         .foregroundColor(.gray)
                         .italic()
@@ -72,29 +72,29 @@ struct StorageWidgetEntryView : View {
         case .systemMedium:
             VStack(alignment: .leading) {
                 HStack {
-                    Text(StorageWatcherStrings.storage.rawValue)
+                    Text("Storage")
                         .font(.headline)
                     Spacer()
                     Text("\(Image(systemName: "internaldrive.fill"))")
                 }
                 Spacer()
                 HStack {
-                    Text(StorageWatcherStrings.total.rawValue)
+                    Text("Total:")
                     Spacer()
                     Text(String(format: "%.1f GB", entry.storageInfo.totalSpaceInGB))
                 }
                 HStack {
-                    Text(StorageWatcherStrings.used.rawValue)
+                    Text("Used:")
                     Spacer()
                     Text(String(format: "%.1f GB", entry.storageInfo.usedSpaceInGB))
                 }
                 HStack {
-                    Text(StorageWatcherStrings.free.rawValue)
+                    Text("Free:")
                     Spacer()
                     Text(String(format: "%.1f GB", entry.storageInfo.freeSpaceInGB))
                 }
                 HStack {
-                    Text("\(StorageWatcherStrings.lastUpdated.rawValue) \(entry.date, style: .time)")
+                    Text("Last updated \(entry.date, style: .time)")
                         .font(.footnote)
                         .foregroundColor(.gray)
                         .italic()
@@ -105,7 +105,7 @@ struct StorageWidgetEntryView : View {
         case .systemLarge, .systemExtraLarge:
             VStack(alignment: .leading) {
                 HStack {
-                    Text(StorageWatcherStrings.deviceStorageInformation.rawValue)
+                    Text("Device Storage Information")
                         .font(.headline)
                     Spacer()
                     Text("\(Image(systemName: "internaldrive.fill"))")
@@ -113,18 +113,18 @@ struct StorageWidgetEntryView : View {
                 Divider()
                 Spacer()
                 HStack {
-                    Text(StorageWatcherStrings.totalSpace.rawValue)
+                    Text("Total Space:")
                     Spacer()
                     Text(String(format: "%.2f GB", entry.storageInfo.totalSpaceInGB))
                     
                 }
                 HStack {
-                    Text(StorageWatcherStrings.usedSpace.rawValue)
+                    Text("Used Space:")
                     Spacer()
                     Text(String(format: "%.2f GB", entry.storageInfo.usedSpaceInGB))
                 }
                 HStack {
-                    Text(StorageWatcherStrings.freeSpace.rawValue)
+                    Text("Free Space:")
                     Spacer()
                     Text(String(format: "%.2f GB", entry.storageInfo.freeSpaceInGB))
                 }
@@ -136,17 +136,16 @@ struct StorageWidgetEntryView : View {
                 }
                 Spacer()
                 HStack {
-                    Text("\(StorageWatcherStrings.lastUpdated.rawValue) \(entry.date, style: .time)")
+                    Text("Last updated \(entry.date, style: .time)")
                         .font(.footnote)
                         .foregroundColor(.gray)
                         .italic()
                     Spacer()
                 }
-
             }
             .padding()
         @unknown default:
-            Text(StorageWatcherStrings.unsupportedSize.rawValue)
+            Text("Unsupported size")
         }
     }
 }
