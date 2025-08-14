@@ -23,10 +23,12 @@ struct StorageDetailView: View {
             .padding(.horizontal)
 
             #if os(iOS)
-            Spacer()
-            RingView(percentage: storageInfo.usedSpacePercentage)
-            Spacer()
-            StorageNumbers(storageInfo: storageInfo)
+            VStack {
+                RingView(percentage: storageInfo.usedSpacePercentage)
+                    .padding()
+                StorageNumbers(storageInfo: storageInfo)
+            }
+            .padding()
             #elseif os(macOS)
             Spacer()
             HStack {
