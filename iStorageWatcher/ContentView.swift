@@ -11,6 +11,7 @@ import SwiftData
 struct ContentView: View {
     @State private var storageInfo: StorageInfo?
     @Environment(\.modelContext) private var modelContext
+    @AppStorage("isSignedIn") private var isSignedIn = false
     
     #if os(macOS)
     @Binding var isMenuBarMode: Bool
@@ -55,6 +56,9 @@ struct ContentView: View {
             .navigationTitle("iStorageWatcher")
         }
         .onAppear { bootstrapAndRefresh() }
+        .overlay(alignment: .center) {
+            if !isSignedIn { SignInOverlay() }
+        }
         #elseif os(macOS)
         Group {
             VStack {
@@ -67,6 +71,9 @@ struct ContentView: View {
             }
         }
         .onAppear { bootstrapAndRefresh() }
+        .overlay(alignment: .center) {
+            if !isSignedIn { SignInOverlay() }
+        }
         #endif
     }
     
@@ -81,6 +88,19 @@ struct ContentView: View {
         if let fresh = StorageManager.shared.getStorageInfo() {
             storageInfo = fresh
             DataCache.updateStorage(in: ctx, with: fresh)
+        }
+    }
+}
+
+private struct SignInOverlay: View {
+    var body: some View {
+        ZStack {
+            Color.black.opacity(0.2).ignoresSafeArea()
+            SignInView()
+                .padding()
+                .background(.ultraThinMaterial)
+                .clipShape(RoundedRectangle(cornerRadius: 16))
+                .shadow(radius: 10)
         }
     }
 }

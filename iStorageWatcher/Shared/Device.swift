@@ -10,10 +10,12 @@ import SwiftData
 
 @Model
 final class Device {
-    // Identity
-    var id: UUID
-    var name: String
-    var platform: String
+    // Identity (defaults required for CloudKit-backed SwiftData)
+    var id: UUID = UUID()
+    var name: String = ""
+    var platform: String = ""
+    // Local stable key to deduplicate a physical device across restarts/sign-in cycles
+    var deviceKey: String = ""
 
     // Metrics
     var lastUpdated: Date?
@@ -23,10 +25,9 @@ final class Device {
     var batteryCapacityPercent: Int?
     var isCharging: Bool?
 
-    init(name: String, platform: String) {
-        self.id = UUID()
+    init(name: String = "", platform: String = "", deviceKey: String = "") {
         self.name = name
         self.platform = platform
+        self.deviceKey = deviceKey
     }
 }
-

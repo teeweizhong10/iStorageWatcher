@@ -14,17 +14,16 @@ import SwiftData
 
 #if canImport(SwiftData)
 @Model final class WidgetDevice {
-    var id: UUID
-    var name: String
-    var platform: String
+    var id: UUID = UUID()
+    var name: String = ""
+    var platform: String = ""
     var lastUpdated: Date?
     var storageTotalBytes: UInt64?
     var storageFreeBytes: UInt64?
     var batteryHealthPercent: Double?
     var batteryCapacityPercent: Int?
     var isCharging: Bool?
-    init(name: String, platform: String) {
-        self.id = UUID()
+    init(name: String = "", platform: String = "") {
         self.name = name
         self.platform = platform
     }

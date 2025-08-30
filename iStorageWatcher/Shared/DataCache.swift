@@ -17,24 +17,72 @@ extension URL {
     }
 }
 
+private var _sharedGroupContainer: ModelContainer? = {
+    let schema = Schema([Device.self])
+    guard let url = URL.storeURL(for: AppGroups.id, databaseName: "iStorageWatcher.sqlite") else { return nil }
+    let config = ModelConfiguration(schema: schema, url: url)
+    return try? ModelContainer(for: schema, configurations: config)
+}()
+
 extension DataCache {
-    /// Creates a ModelContext backed by the shared App Group store, if available.
+    /// Returns a ModelContext backed by the shared App Group store, reusing a single container.
     static func makeGroupContext() -> ModelContext? {
-        let schema = Schema([Device.self])
-        guard let url = URL.storeURL(for: AppGroups.id, databaseName: "iStorageWatcher.sqlite") else { return nil }
-        let config = ModelConfiguration(schema: schema, url: url)
-        guard let container = try? ModelContainer(for: schema, configurations: config) else { return nil }
+        guard let container = _sharedGroupContainer else { return nil }
         return ModelContext(container)
     }
 }
 
 enum DataCache {
+    /// Remove duplicate Device rows, keeping the most recently updated per logical device key.
+    @discardableResult
+    static func cleanupDuplicates(in context: ModelContext) -> Int {
+        guard let all = try? context.fetch(FetchDescriptor<Device>()) else { return 0 }
+        var buckets: [String: Device] = [:]
+        var toDelete: [Device] = []
+        func key(for d: Device) -> String {
+            if !d.deviceKey.isEmpty { return d.deviceKey }
+            return "\(d.name.lowercased())|\(d.platform.lowercased())"
+        }
+        for d in all {
+            let k = key(for: d)
+            if let existing = buckets[k] {
+                let existingDate = existing.lastUpdated ?? .distantPast
+                let newDate = d.lastUpdated ?? .distantPast
+                if newDate > existingDate {
+                    toDelete.append(existing)
+                    buckets[k] = d
+                } else {
+                    toDelete.append(d)
+                }
+            } else {
+                buckets[k] = d
+            }
+        }
+        guard !toDelete.isEmpty else { return 0 }
+        toDelete.forEach { context.delete($0) }
+        try? context.save()
+        return toDelete.count
+    }
     static func currentDevice(in context: ModelContext) -> Device {
-        let fetch = FetchDescriptor<Device>()
-        if let existing = try? context.fetch(fetch).first {
+        let key = localDeviceKey()
+        let dn = deviceName()
+        let pf = platformName()
+        // Look up by stable deviceKey first
+        if let existing = try? context.fetch(FetchDescriptor<Device>(
+            predicate: #Predicate { $0.deviceKey == key }
+        )).first {
             return existing
         }
-        let device = Device(name: deviceName(), platform: platformName())
+        // Fallback: if no key match, attempt to find by name+platform (legacy rows)
+        if let legacy = try? context.fetch(FetchDescriptor<Device>(
+            predicate: #Predicate { $0.name == dn && $0.platform == pf }
+        )).first {
+            legacy.deviceKey = key
+            try? context.save()
+            return legacy
+        }
+        // Create new record
+        let device = Device(name: dn, platform: pf, deviceKey: key)
         context.insert(device)
         try? context.save()
         return device
@@ -49,6 +97,8 @@ enum DataCache {
 
     static func updateStorage(in context: ModelContext, with info: StorageInfo) {
         let device = currentDevice(in: context)
+        device.name = deviceName()
+        device.platform = platformName()
         device.storageTotalBytes = info.totalSpace
         device.storageFreeBytes = info.freeSpace
         device.lastUpdated = Date()
@@ -57,11 +107,22 @@ enum DataCache {
 
     static func updateBattery(in context: ModelContext, health: Double, capacity: Int, charging: Bool) {
         let device = currentDevice(in: context)
+        device.name = deviceName()
+        device.platform = platformName()
         device.batteryHealthPercent = health
         device.batteryCapacityPercent = capacity
         device.isCharging = charging
         device.lastUpdated = Date()
         try? context.save()
+    }
+
+    // Stable per-install device key used for deduplication; stored in UserDefaults
+    static func localDeviceKey() -> String {
+        let keyName = "localDeviceKey"
+        if let existing = UserDefaults.standard.string(forKey: keyName) { return existing }
+        let newKey = UUID().uuidString
+        UserDefaults.standard.set(newKey, forKey: keyName)
+        return newKey
     }
 
     static func deviceName() -> String {
