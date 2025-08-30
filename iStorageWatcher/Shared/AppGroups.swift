@@ -9,6 +9,10 @@
 import Foundation
 
 enum AppGroups {
+    #if os(macOS)
+    static let id: String = "FG6VT6A3M9.iStorageWatcher"
+    #else
     static let id: String = "group.iStorageWatcher"
+    #endif
 }
 

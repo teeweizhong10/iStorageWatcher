@@ -193,8 +193,12 @@ private func persistToSharedStore(info: StorageInfo) {
     }
 
     let schema = Schema([WidgetDevice.self])
-    let groupId = "group.iStorageWatcher"
-    if let url = URL.widgetStoreURL(for: groupId, databaseName: "iStorageWatcher.sqlite"),
+    #if os(macOS)
+    let id: String = "FG6VT6A3M9.iStorageWatcher"
+    #else
+    let id: String = "group.iStorageWatcher"
+    #endif
+    if let url = URL.widgetStoreURL(for: id, databaseName: "iStorageWatcher.sqlite"),
        let container = try? ModelContainer(for: schema, configurations: ModelConfiguration(schema: schema, url: url)) {
         let context = ModelContext(container)
         let device = currentDevice(in: context)
