@@ -99,7 +99,9 @@ struct iStorageWatcherApp: App {
     @StateObject private var statusBarManager = StatusBarManager()
     @AppStorage("showAsMenuBar") private var showAsMenuBar = false
     #endif
-    
+
+    // Use SwiftUI-provided container management to avoid init-time crashes.
+
     var body: some Scene {
         WindowGroup {
             #if os(macOS)

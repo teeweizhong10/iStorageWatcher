@@ -10,10 +10,10 @@ import SwiftData
 
 @Model
 final class Device {
-    // Identity
-    var id: UUID
-    var name: String
-    var platform: String
+    // Identity (defaults required for CloudKit-backed SwiftData)
+    @Attribute(.unique) var id: UUID = UUID()
+    var name: String = ""
+    var platform: String = ""
 
     // Metrics
     var lastUpdated: Date?
@@ -23,10 +23,8 @@ final class Device {
     var batteryCapacityPercent: Int?
     var isCharging: Bool?
 
-    init(name: String, platform: String) {
-        self.id = UUID()
+    init(name: String = "", platform: String = "") {
         self.name = name
         self.platform = platform
     }
 }
-
