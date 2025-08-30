@@ -33,3 +33,18 @@ Notes: Use Xcode’s Product > Test to run tests interactively. Run `xcodebuild 
 ## Security & Configuration Tips
 - Do not commit secrets. Edit `Info.plist` and entitlement files thoughtfully. macOS battery info uses `ioreg`; avoid blocking calls—follow patterns in `BatteryHealthManager`.
 
+## SwiftData Model & Cloud Sync (Plan)
+- Entity: `Device` (single source of truth across app and widgets)
+  - `id: UUID`, `name: String`, `platform: String`
+  - `lastUpdated: Date`
+  - `storageTotalBytes: UInt64`, `storageFreeBytes: UInt64`
+  - `batteryHealthPercent: Double?`, `batteryCapacityPercent: Int?`, `isCharging: Bool?`
+- App Group store: use `group.iStorageWatcher` so app and widget persist to one on‑device store.
+- Home screen: query all `Device` records sorted by `lastUpdated` to show multiple devices’ storage; fall back to cached if offline.
+- CloudKit sync (future): enable iCloud Capability and pick a container (e.g., `iCloud.com.your.bundle`). Configure SwiftData with a CloudKit‑enabled `ModelConfiguration` and shared schema in all targets. Example:
+  ```swift
+  let schema = Schema([Device.self])
+  let config = ModelConfiguration(schema: schema, /* cloudKitContainerIdentifier: "iCloud.com.your.bundle" */)
+  let container = try ModelContainer(for: schema, configurations: config)
+  ```
+- Notes: keep model identical across app/widget; handle conflicts with last‑write‑wins; avoid storing PII in `name`. Consider a stable device identifier for deduping (e.g., hashed serial/identifier stored privately).
