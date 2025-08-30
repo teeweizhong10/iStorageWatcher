@@ -32,7 +32,8 @@ struct HomeView: View {
     var body: some View {
         VStack(spacing: 12) {
             header
-            StorageDetailView(storageInfo: selectedStorageInfo ?? storageInfo)
+            StorageDetailView(storageInfo: selectedStorageInfo ?? storageInfo,
+                              deviceName: selectedDeviceName ?? localDeviceName)
 
             #if os(macOS)
             // Add the menu bar toggle directly in the home view
@@ -45,11 +46,11 @@ struct HomeView: View {
 //                    .padding()
 //            }
             BatteryHealthView()
-            deviceSwitcherBar
             #else
 //            BatteryHealthView()
 //                .padding()
             #endif
+            deviceSwitcherBar
         }
     }
 }
@@ -115,6 +116,21 @@ private extension HomeView {
         }
         .padding(.horizontal)
         .padding(.bottom)
+    }
+}
+
+private extension HomeView {
+    var selectedDeviceName: String? {
+        guard let id = selectedDeviceID, let d = devices.first(where: { $0.id == id }) else { return nil }
+        return d.name.isEmpty ? nil : d.name
+    }
+
+    var localDeviceName: String {
+        #if os(macOS)
+        return Host.current().localizedName ?? "Mac"
+        #else
+        return UIDevice.current.name
+        #endif
     }
 }
 

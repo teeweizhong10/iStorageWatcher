@@ -9,6 +9,7 @@ import SwiftUI
 
 struct StorageDetailView: View {
     let storageInfo: StorageInfo
+    var deviceName: String? = nil
 
     var body: some View {
         VStack {
@@ -17,7 +18,7 @@ struct StorageDetailView: View {
                     .font(.title2)
                     .fontWeight(.bold)
                 Spacer()
-                Text(getDeviceType())
+                Text(deviceName ?? getLocalDeviceName())
                     .foregroundColor(.gray)
             }
             .padding(.horizontal)
@@ -62,20 +63,16 @@ struct StorageDetailView: View {
     }
 }
 
-func getDeviceType() -> String {
+private func getLocalDeviceName() -> String {
     #if os(iOS)
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            return "iPad"
-        } else {
-            return "iPhone"
-        }
+    return UIDevice.current.name
     #elseif os(macOS)
-        return "Mac"
+    return Host.current().localizedName ?? "Mac"
     #else
-        return "Unknown Device"
+    return "Unknown Device"
     #endif
 }
 
 #Preview {
-    StorageDetailView(storageInfo: StorageInfo(totalSpace: 100000, freeSpace: 8000))
+    StorageDetailView(storageInfo: StorageInfo(totalSpace: 100000, freeSpace: 8000), deviceName: "Demo MacBook Pro")
 }
