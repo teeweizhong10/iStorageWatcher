@@ -13,6 +13,7 @@
 		4A3580EC2D224AD8000E7615 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A3580C42D210B88000E7615 /* WidgetKit.framework */; };
 		4A3580ED2D224AD8000E7615 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A3580C62D210B88000E7615 /* SwiftUI.framework */; };
 		4A3580FE2D224AD9000E7615 /* iStorageWidgetiOSExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 4A3580EB2D224AD8000E7615 /* iStorageWidgetiOSExtension.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		4AC53AA02E62B0F1005E400E /* AGENTS.md in Resources */ = {isa = PBXBuildFile; fileRef = 4AC53A9F2E62B0F1005E400E /* AGENTS.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		4A3580C42D210B88000E7615 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		4A3580C62D210B88000E7615 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		4A3580EB2D224AD8000E7615 /* iStorageWidgetiOSExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = iStorageWidgetiOSExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		4AC53A9F2E62B0F1005E400E /* AGENTS.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = AGENTS.md; sourceTree = "<group>"; };
 		4AE800AF2D2107AF00D23196 /* iStorageWatcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iStorageWatcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AE800C22D2107B100D23196 /* iStorageWatcherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iStorageWatcherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AE800CC2D2107B100D23196 /* iStorageWatcherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iStorageWatcherUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -209,6 +211,7 @@
 		4AE800A62D2107AF00D23196 = {
 			isa = PBXGroup;
 			children = (
+				4AC53A9F2E62B0F1005E400E /* AGENTS.md */,
 				4AE800B12D2107AF00D23196 /* iStorageWatcher */,
 				4AE800C52D2107B100D23196 /* iStorageWatcherTests */,
 				4AE800CF2D2107B100D23196 /* iStorageWatcherUITests */,
@@ -422,6 +425,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AC53AA02E62B0F1005E400E /* AGENTS.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -513,7 +517,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = iStorageWidgetMacOS/iStorageWidgetMacOS.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = FG6VT6A3M9;
@@ -544,7 +548,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = iStorageWidgetMacOS/iStorageWidgetMacOS.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = FG6VT6A3M9;
@@ -755,7 +759,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = iStorageWatcher/iStorageWatcher.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"iStorageWatcher/Preview Content\"";
@@ -802,7 +806,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = iStorageWatcher/iStorageWatcher.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"iStorageWatcher/Preview Content\"";

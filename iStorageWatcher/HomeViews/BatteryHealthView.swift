@@ -6,6 +6,9 @@
 //
 
 import SwiftUI
+#if canImport(SwiftData)
+import SwiftData
+#endif
 #if os(iOS)
 import UIKit
 #endif
@@ -13,6 +16,7 @@ import UIKit
 struct BatteryHealthView: View {
     #if os(macOS)
     @StateObject private var batteryManager = BatteryHealthManager.shared
+    @Environment(\.modelContext) private var modelContext
     #endif
     
     var body: some View {
@@ -45,7 +49,41 @@ struct BatteryHealthView: View {
         .onAppear {
             Task {
                 await batteryManager.updateBatteryInfo()
+                let ctx = DataCache.makeGroupContext() ?? modelContext
+                DataCache.updateBattery(
+                    in: ctx,
+                    health: batteryManager.batteryHealth,
+                    capacity: batteryManager.batteryCapacity,
+                    charging: batteryManager.isCharging
+                )
             }
+        }
+        .onChange(of: batteryManager.batteryHealth) { _ in
+            let ctx = DataCache.makeGroupContext() ?? modelContext
+            DataCache.updateBattery(
+                in: ctx,
+                health: batteryManager.batteryHealth,
+                capacity: batteryManager.batteryCapacity,
+                charging: batteryManager.isCharging
+            )
+        }
+        .onChange(of: batteryManager.batteryCapacity) { _ in
+            let ctx = DataCache.makeGroupContext() ?? modelContext
+            DataCache.updateBattery(
+                in: ctx,
+                health: batteryManager.batteryHealth,
+                capacity: batteryManager.batteryCapacity,
+                charging: batteryManager.isCharging
+            )
+        }
+        .onChange(of: batteryManager.isCharging) { _ in
+            let ctx = DataCache.makeGroupContext() ?? modelContext
+            DataCache.updateBattery(
+                in: ctx,
+                health: batteryManager.batteryHealth,
+                capacity: batteryManager.batteryCapacity,
+                charging: batteryManager.isCharging
+            )
         }
         #endif
     }
