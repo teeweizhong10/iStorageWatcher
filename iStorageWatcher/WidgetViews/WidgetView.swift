@@ -91,20 +91,22 @@ struct StorageWidgetEntryView : View {
                 WidgetRingView(percentage: entry.storageInfo.usedSpacePercentage, storageInGB: entry.storageInfo.freeSpaceInGB)
                 HStack {
                     Text("Last updated \(entry.date, style: .time)")
-                        .font(.footnote)
                         .foregroundColor(.gray)
                         .italic()
+                        .font(.system(size: 9))
+                        .padding(.init(top: 2, leading: 0, bottom: 2, trailing: 0))
                     Spacer()
                 }
             }
         case .systemMedium:
             VStack(alignment: .leading) {
                 HStack {
-                    Text("Storage")
+                    Text("Device Storage Information")
                         .font(.headline)
                     Spacer()
                     Text("\(Image(systemName: "internaldrive.fill"))")
                 }
+                Divider()
                 Spacer()
                 HStack {
                     Text("Total:")
@@ -123,9 +125,10 @@ struct StorageWidgetEntryView : View {
                 }
                 HStack {
                     Text("Last updated \(entry.date, style: .time)")
-                        .font(.footnote)
                         .foregroundColor(.gray)
                         .italic()
+                        .font(.system(size: 9))
+                        .padding(.init(top: 5, leading: 0, bottom: 2, trailing: 0))
                     Spacer()
                 }
             }
@@ -165,9 +168,10 @@ struct StorageWidgetEntryView : View {
                 Spacer()
                 HStack {
                     Text("Last updated \(entry.date, style: .time)")
-                        .font(.footnote)
                         .foregroundColor(.gray)
                         .italic()
+                        .font(.system(size: 9))
+                        .padding(.init(top: 2, leading: 0, bottom: 2, trailing: 0))
                     Spacer()
                 }
             }
