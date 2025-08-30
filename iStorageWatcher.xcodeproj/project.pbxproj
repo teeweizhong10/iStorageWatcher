@@ -840,8 +840,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.wei.iStorageWatcher.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = iStorageWatcherDistributionMobile;
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = iStorageWatcherDistributionMac;
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SUPPORTS_MACCATALYST = NO;
