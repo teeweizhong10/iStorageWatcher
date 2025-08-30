@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 #if os(macOS)
 import AppKit
 #endif
@@ -123,5 +124,6 @@ struct iStorageWatcherApp: App {
             ContentView()
             #endif
         }
+        .modelContainer(for: [Device.self])
     }
 }

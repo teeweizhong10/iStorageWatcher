@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ContentView: View {
     @State private var storageInfo: StorageInfo?
+    @Environment(\.modelContext) private var modelContext
     
     #if os(macOS)
     @Binding var isMenuBarMode: Bool
@@ -19,7 +21,7 @@ struct ContentView: View {
     #else
     init() {}
     #endif
-    
+
     var body: some View {
         #if os(iOS)
         // Sidebar-based layout kept for reference
@@ -52,9 +54,7 @@ struct ContentView: View {
             }
             .navigationTitle("iStorageWatcher")
         }
-        .onAppear {
-            storageInfo = StorageManager.shared.getStorageInfo()
-        }
+        .onAppear { bootstrapAndRefresh() }
         #elseif os(macOS)
         Group {
             VStack {
@@ -66,10 +66,22 @@ struct ContentView: View {
                 }
             }
         }
-        .onAppear {
-            storageInfo = StorageManager.shared.getStorageInfo()
-        }
+        .onAppear { bootstrapAndRefresh() }
         #endif
+    }
+    
+    private func bootstrapAndRefresh() {
+        // Prefer shared App Group store if configured; fallback to default context
+        let ctx = DataCache.makeGroupContext() ?? modelContext
+        // 1) Use cached values immediately if available
+        if let cached = DataCache.cachedStorage(in: ctx) {
+            storageInfo = cached
+        }
+        // 2) Fetch fresh values and persist
+        if let fresh = StorageManager.shared.getStorageInfo() {
+            storageInfo = fresh
+            DataCache.updateStorage(in: ctx, with: fresh)
+        }
     }
 }
 

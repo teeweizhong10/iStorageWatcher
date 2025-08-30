@@ -4,8 +4,38 @@
 //
 //  Created by Wei Zhong Tee on 12/28/24.
 //
+//  Note: Widget currently fetches fresh values directly. If you want the widget
+//  to write/read the same SwiftData store as the app, configure an App Group
+//  and point your ModelContainer at the group URL in both targets. This
+//  requires entitlements changes in Xcode.
 import WidgetKit
 import SwiftUI
+import SwiftData
+
+#if canImport(SwiftData)
+@Model final class WidgetDevice {
+    var id: UUID
+    var name: String
+    var platform: String
+    var lastUpdated: Date?
+    var storageTotalBytes: UInt64?
+    var storageFreeBytes: UInt64?
+    var batteryHealthPercent: Double?
+    var batteryCapacityPercent: Int?
+    var isCharging: Bool?
+    init(name: String, platform: String) {
+        self.id = UUID()
+        self.name = name
+        self.platform = platform
+    }
+}
+
+extension URL {
+    static func widgetStoreURL(for appGroup: String, databaseName: String) -> URL? {
+        FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroup)?.appendingPathComponent(databaseName, isDirectory: false)
+    }
+}
+#endif
 
 struct StorageWidgetProvider: TimelineProvider {
     typealias Entry = SimpleEntry
@@ -18,19 +48,17 @@ struct StorageWidgetProvider: TimelineProvider {
     }
 
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(
-            date: Date(),
-            storageInfo: StorageManager.shared.getStorageInfo() ?? StorageInfo(totalSpace: 500_000_000_000, freeSpace: 200_000_000_000)
-        )
+        let fresh = StorageManager.shared.getStorageInfo() ?? StorageInfo(totalSpace: 500_000_000_000, freeSpace: 200_000_000_000)
+        persistToSharedStore(info: fresh)
+        let entry = SimpleEntry(date: Date(), storageInfo: fresh)
         completion(entry)
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<SimpleEntry>) -> ()) {
         let currentDate = Date()
-        let entry = SimpleEntry(
-            date: currentDate,
-            storageInfo: StorageManager.shared.getStorageInfo() ?? StorageInfo(totalSpace: 500_000_000_000, freeSpace: 200_000_000_000)
-        )
+        let fresh = StorageManager.shared.getStorageInfo() ?? StorageInfo(totalSpace: 500_000_000_000, freeSpace: 200_000_000_000)
+        persistToSharedStore(info: fresh)
+        let entry = SimpleEntry(date: currentDate, storageInfo: fresh)
         let refreshDate = Calendar.current.date(byAdding: .minute, value: 15, to: currentDate)!
         let timeline = Timeline(entries: [entry], policy: .after(refreshDate))
         completion(timeline)
@@ -148,4 +176,29 @@ struct StorageWidgetEntryView : View {
             Text("Unsupported size")
         }
     }
+}
+
+// MARK: - Shared Store Helpers (Widget)
+private func persistToSharedStore(info: StorageInfo) {
+    #if canImport(SwiftData)
+    func currentDevice(in context: ModelContext) -> WidgetDevice {
+        if let existing = try? context.fetch(FetchDescriptor<WidgetDevice>()).first { return existing }
+        let device = WidgetDevice(name: "WidgetHost", platform: "macOS")
+        context.insert(device)
+        try? context.save()
+        return device
+    }
+
+    let schema = Schema([WidgetDevice.self])
+    let groupId = "group.iStorageWatcher"
+    if let url = URL.widgetStoreURL(for: groupId, databaseName: "iStorageWatcher.sqlite"),
+       let container = try? ModelContainer(for: schema, configurations: ModelConfiguration(schema: schema, url: url)) {
+        let context = ModelContext(container)
+        let device = currentDevice(in: context)
+        device.storageTotalBytes = info.totalSpace
+        device.storageFreeBytes = info.freeSpace
+        device.lastUpdated = Date()
+        try? context.save()
+    }
+    #endif
 }
