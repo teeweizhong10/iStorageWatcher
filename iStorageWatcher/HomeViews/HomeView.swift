@@ -68,7 +68,7 @@ private extension HomeView {
     }
 
     var selectedStorageInfo: StorageInfo? {
-        guard let id = selectedDeviceID, let d = devices.first(where: { $0.id == id }),
+        guard let id = selectedDeviceID, let d = uniqueDevices.first(where: { $0.id == id }),
               let total = d.storageTotalBytes, let free = d.storageFreeBytes else { return nil }
         return StorageInfo(totalSpace: total, freeSpace: free)
     }
@@ -89,7 +89,7 @@ private extension HomeView {
 
             if isSwitcherExpanded {
                 VStack(alignment: .leading, spacing: 8) {
-                    ForEach(devices, id: \.id) { device in
+                    ForEach(uniqueDevices, id: \.id) { device in
                         HStack {
                             VStack(alignment: .leading) {
                                 Text(device.name).fontWeight(.semibold)
@@ -121,7 +121,7 @@ private extension HomeView {
 
 private extension HomeView {
     var selectedDeviceName: String? {
-        guard let id = selectedDeviceID, let d = devices.first(where: { $0.id == id }) else { return nil }
+        guard let id = selectedDeviceID, let d = uniqueDevices.first(where: { $0.id == id }) else { return nil }
         return d.name.isEmpty ? nil : d.name
     }
 
@@ -131,6 +131,25 @@ private extension HomeView {
         #else
         return UIDevice.current.name
         #endif
+    }
+}
+
+private extension HomeView {
+    // Deduplicate devices by deviceKey if present, else by name+platform, keeping most recently updated
+    var uniqueDevices: [Device] {
+        var buckets: [String: Device] = [:]
+        for d in devices {
+            let key = !(d.deviceKey.isEmpty) ? d.deviceKey : "\(d.name.lowercased())|\(d.platform.lowercased())"
+            if let existing = buckets[key] {
+                let existingDate = existing.lastUpdated ?? .distantPast
+                let newDate = d.lastUpdated ?? .distantPast
+                if newDate > existingDate { buckets[key] = d }
+            } else {
+                buckets[key] = d
+            }
+        }
+        // Preserve sort by lastUpdated desc
+        return buckets.values.sorted { ( ($0.lastUpdated ?? .distantPast) > ($1.lastUpdated ?? .distantPast) ) }
     }
 }
 
