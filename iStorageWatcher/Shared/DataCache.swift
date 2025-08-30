@@ -33,6 +33,36 @@ extension DataCache {
 }
 
 enum DataCache {
+    /// Remove duplicate Device rows, keeping the most recently updated per logical device key.
+    @discardableResult
+    static func cleanupDuplicates(in context: ModelContext) -> Int {
+        guard let all = try? context.fetch(FetchDescriptor<Device>()) else { return 0 }
+        var buckets: [String: Device] = [:]
+        var toDelete: [Device] = []
+        func key(for d: Device) -> String {
+            if !d.deviceKey.isEmpty { return d.deviceKey }
+            return "\(d.name.lowercased())|\(d.platform.lowercased())"
+        }
+        for d in all {
+            let k = key(for: d)
+            if let existing = buckets[k] {
+                let existingDate = existing.lastUpdated ?? .distantPast
+                let newDate = d.lastUpdated ?? .distantPast
+                if newDate > existingDate {
+                    toDelete.append(existing)
+                    buckets[k] = d
+                } else {
+                    toDelete.append(d)
+                }
+            } else {
+                buckets[k] = d
+            }
+        }
+        guard !toDelete.isEmpty else { return 0 }
+        toDelete.forEach { context.delete($0) }
+        try? context.save()
+        return toDelete.count
+    }
     static func currentDevice(in context: ModelContext) -> Device {
         let key = localDeviceKey()
         let dn = deviceName()

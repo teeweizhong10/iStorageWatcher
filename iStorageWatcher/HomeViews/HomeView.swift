@@ -52,6 +52,7 @@ struct HomeView: View {
             #endif
             deviceSwitcherBar
         }
+        .onAppear { DataCache.cleanupDuplicates(in: modelContext) }
     }
 }
 
@@ -81,7 +82,7 @@ private extension HomeView {
                     Text("Devices")
                         .fontWeight(.semibold)
                     Spacer()
-                    Text(devices.count == 0 ? "No devices yet" : "\(devices.count)")
+                    Text(uniqueDevices.isEmpty ? "No devices yet" : "\(uniqueDevices.count)")
                         .foregroundColor(.secondary)
                 }
             }
