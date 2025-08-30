@@ -11,7 +11,7 @@ import SwiftData
 @Model
 final class Device {
     // Identity (defaults required for CloudKit-backed SwiftData)
-    @Attribute(.unique) var id: UUID = UUID()
+    var id: UUID = UUID()
     var name: String = ""
     var platform: String = ""
 

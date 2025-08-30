@@ -17,13 +17,17 @@ extension URL {
     }
 }
 
+private var _sharedGroupContainer: ModelContainer? = {
+    let schema = Schema([Device.self])
+    guard let url = URL.storeURL(for: AppGroups.id, databaseName: "iStorageWatcher.sqlite") else { return nil }
+    let config = ModelConfiguration(schema: schema, url: url)
+    return try? ModelContainer(for: schema, configurations: config)
+}()
+
 extension DataCache {
-    /// Creates a ModelContext backed by the shared App Group store, if available.
+    /// Returns a ModelContext backed by the shared App Group store, reusing a single container.
     static func makeGroupContext() -> ModelContext? {
-        let schema = Schema([Device.self])
-        guard let url = URL.storeURL(for: AppGroups.id, databaseName: "iStorageWatcher.sqlite") else { return nil }
-        let config = ModelConfiguration(schema: schema, url: url)
-        guard let container = try? ModelContainer(for: schema, configurations: config) else { return nil }
+        guard let container = _sharedGroupContainer else { return nil }
         return ModelContext(container)
     }
 }
