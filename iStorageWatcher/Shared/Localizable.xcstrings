@@ -17,6 +17,9 @@
     "%@" : {
 
     },
+    "%lld" : {
+
+    },
     "Available Storage" : {
 
     },
@@ -33,7 +36,13 @@
     "Battery: %lld%% (Health not available)" : {
 
     },
+    "Checking iCloud status…" : {
+
+    },
     "Device Storage Information" : {
+
+    },
+    "Devices" : {
 
     },
     "Displays the device's internal storage details." : {
@@ -51,13 +60,37 @@
     "Free:" : {
 
     },
+    "Home" : {
+
+    },
+    "iCloud: Available" : {
+
+    },
+    "iCloud: Not signed in" : {
+
+    },
+    "iCloud: Restricted" : {
+
+    },
     "iStorageWatcher" : {
 
     },
     "Last updated %@" : {
 
     },
+    "No devices yet" : {
+
+    },
+    "Open iCloud Settings" : {
+
+    },
     "Open System Settings" : {
+
+    },
+    "Sign in to sync your devices and storage info via iCloud." : {
+
+    },
+    "Sign Out" : {
 
     },
     "Storage" : {
@@ -85,6 +118,9 @@
 
     },
     "Used:" : {
+
+    },
+    "Welcome to iStorageWatcher" : {
 
     }
   },
